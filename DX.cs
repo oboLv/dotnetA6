@@ -24,42 +24,38 @@ namespace MovieProg
         public void ShowMovies(List<Movie> movies)
         {
             Console.Clear();
-            
-            var exitview = false;
-            var displaybool = true;
-            while (!exitview)
+            System.Console.WriteLine("{0, -5}{1, -100}{2, 2}", "ID", "Title", "Genres");
+            foreach (var movie in movies)
             {
-                if (displaybool == true)
-                {
-                    System.Console.WriteLine("{0, -5}{1, -100}{2, 2}", "ID", "Title", "Genres");
-                }
-                var choiceview = Console.ReadLine();
-                if (choiceview == "1")
-                {
-                    displaybool = true;
-                    Console.Clear();
-                }
-                else if (choiceview == "2")
-                {
-                    exitview = true;
-                }
-                else
-                {
-                    displaybool = false;
-                    System.Console.WriteLine("Try again");
-                }
+                System.Console.WriteLine(movie.Display());
             }
-
+            System.Console.WriteLine("Press any key to return to menu:");
+            var hold = Console.ReadKey();
         }
+
 
         public void ShowVideos(List<Video> videos)
         {
-
+            Console.Clear();
+            System.Console.WriteLine("{0, -5}{1, -100}{2, 6}{3, 6}{4, 5}", "ID", "Title", "Format", "Length", "Regions");
+            foreach (var video in videos)
+            {
+                System.Console.WriteLine(video.Display());
+            }
+            System.Console.WriteLine("Press any key to return to menu:");
+            var hold = Console.ReadKey();
         }
 
         public void ShowShows(List<Show> shows)
         {
-
+            Console.Clear();
+            System.Console.WriteLine("{0, -5}{1, -100}{2, 8}{3, 8}{4}", "ID", "Title", "Genres");
+            foreach (var show in shows)
+            {
+                System.Console.WriteLine(show.Display());
+            }
+            System.Console.WriteLine("Press any key to return to menu:");
+            var hold = Console.ReadKey();
         }
         public List<Show> GetShows()
         {
@@ -122,6 +118,37 @@ namespace MovieProg
             }
             reader.Close();
             return movies;
+        }
+        public void AddMovie()
+        {
+            var addMov = new Movie();
+            System.Console.Write("Enter title: ");
+            addMov.title = Console.ReadLine();
+            System.Console.Write("Enter genre:");
+            var newGenreBool = false;
+            do
+            {
+                System.Console.Write("Enter genre: ");                
+                addMov.genres.Add(Console.ReadLine());
+                System.Console.WriteLine("Add more genres? (Y/N)");
+                var moreGenres = Console.ReadLine();
+                if (moreGenres.ToUpper() == "Y")
+                {
+                    break;
+                }
+                else
+                {
+                    newGenreBool = true;
+                }
+            } while (!newGenreBool);
+        }
+        public void AddShow()
+        {
+
+        }
+        public void AddVideo()
+        {
+
         }
     }
 }

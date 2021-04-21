@@ -14,7 +14,8 @@ namespace MovieProg.Models
 
         public override string Display()
         {
-            var display = $"{id, -5}{title, -100}{format, 2}";
+            var regionString = string.Join("/", regions);
+            var display = $"{id, -5}{title, -100}{format, 6}{length, 6}{regionString, 5}";
             return display;
         }
     }

@@ -14,7 +14,7 @@ namespace MovieProg.Models
         public override string Display()
         {
             var writerString = string.Join("/", writers);
-            var display = $"{id, -5}{title, -100}{season, 2}{episode, 2}{writerString}";
+            var display = $"{id, -5}{title, -100}{season, 8}{episode, 8}{writerString}";
             return display;
         }
     }
