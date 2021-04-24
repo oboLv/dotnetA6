@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.IO;
 using MovieProg.Models;
+using ConsoleTables;
 namespace MovieProg
 {
     class Program
@@ -13,11 +14,11 @@ namespace MovieProg
             var movies = new List<Movie>(dx.GetMovies());
             var videos = new List<Video>(dx.GetVideos());
             var shows = new List<Show>(dx.GetShows());
-            var choice = dx.MainMenu();
+            
             var exit = false;
             while(!exit)
             {
-                
+                var choice = dx.MainMenu();
                 if(choice == "1")
                 {
                     dx.ShowMovies(movies);

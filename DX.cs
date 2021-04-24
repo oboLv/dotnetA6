@@ -6,7 +6,21 @@ using MovieProg.Models;
 
 namespace MovieProg
 {
-    public class DX
+    public interface IDX
+    {
+        void AddMovie();
+        void AddShow();
+        void AddVideo();
+        List<Movie> GetMovies();
+        List<Show> GetShows();
+        List<Video> GetVideos();
+        string MainMenu();
+        void ShowMovies(List<Movie> movies);
+        void ShowShows(List<Show> shows);
+        void ShowVideos(List<Video> videos);
+    }
+
+    public class DX : IDX
     {
         public string MainMenu()
         {
@@ -128,7 +142,7 @@ namespace MovieProg
             var newGenreBool = false;
             do
             {
-                System.Console.Write("Enter genre: ");                
+                System.Console.Write("Enter genre: ");
                 addMov.genres.Add(Console.ReadLine());
                 System.Console.WriteLine("Add more genres? (Y/N)");
                 var moreGenres = Console.ReadLine();
