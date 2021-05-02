@@ -1,8 +1,10 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.IO;
 using MovieProg.Models;
-using ConsoleTables;
+using Microsoft.Extensions.DependencyInjection;
+using MovieProg.Files;
+using MovieProg.Data;
+
 namespace MovieProg
 {
     class Program
@@ -10,10 +12,10 @@ namespace MovieProg
         static void Main(string[] args)
         {
 
-            var dx = new DX();
-            var movies = new List<Movie>(dx.GetMovies());
-            var videos = new List<Video>(dx.GetVideos());
-            var shows = new List<Show>(dx.GetShows());
+            var mf = new MovieFile();
+            var vf = new VideoFile();
+            var sf = new ShowFile();
+            DX dx = new DX(mf, sf, vf);
             
             var exit = false;
             while(!exit)
@@ -21,15 +23,15 @@ namespace MovieProg
                 var choice = dx.MainMenu();
                 if(choice == "1")
                 {
-                    dx.ShowMovies(movies);
+                    dx.ShowMovies();
                 }
                 else if(choice == "2")
                 {
-                    dx.ShowShows(shows);
+                    dx.ShowShows();
                 }
                 else if(choice == "3")
                 {
-                    dx.ShowVideos(videos);
+                    dx.ShowVideos();
                 }
                 else if(choice == "4")
                 {
@@ -50,6 +52,8 @@ namespace MovieProg
                 else
                 {
                     System.Console.WriteLine("Try again.");
+                    System.Console.WriteLine("Press any key to continue:");
+                    Console.ReadKey();
                 }
             }
         }

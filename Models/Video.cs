@@ -6,16 +6,20 @@ using System.Linq;
 
 namespace MovieProg.Models
 {
-    public class Video : Media
+    public class Video : IMedia
     {
+        public int id { get; set; }
+        public string title { get; set; }
+        public List<string> genres { get; set; }
         public string format { get; set; }
         public int length { get; set; }
-        public List<int> regions { get; set; }
+        public List<string> regions { get; set; }
 
-        public override string Display()
+        public string Display()
         {
             var regionString = string.Join("/", regions);
-            var display = $"{id, -5}{title, -100}{format, 6}{length, 6}{regionString, 5}";
+            var genreString = string.Join("/", genres);
+            var display = $"{id, -5}{title, -50}{format, 6}{length, 6}{regionString, -5}{genreString}";
             return display;
         }
     }
